@@ -11,7 +11,7 @@ Polling APIs with Redux
 ### Initial boilerplate
 * git clone https://marcusberro@github.com/marcusberro/redux-watcher.git
 * npm init
-* npm add redux redux-logger redux-thunk axios --save
+* npm add redux redux-logger redux-thunk redux-promise-middleware axios --save
 * npm add babel-core babel-loader babel-preset-env babel-preset-stage-0 html-webpack-plugin webpack webpack-cli webpack-dev-server --save-dev
 * Changed babel-loader to ^7.1.5
 * npm install

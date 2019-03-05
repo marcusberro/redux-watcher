@@ -1,6 +1,7 @@
 import { createStore, applyMiddleware } from "redux";
 import { createLogger } from "redux-logger";
 import reduxThunk from "redux-thunk"
+import promise from "redux-promise-middleware"
 import axios from "axios";
 
 /* ======================================= */
@@ -36,6 +37,7 @@ const reducer = (state=initialState, action) => {
 }
 
 const middleware = applyMiddleware(
+	promise,
   reduxThunk,
   createLogger()
 )
@@ -44,13 +46,7 @@ const store = createStore(reducer, middleware);
 
 /* ============================== */
 /* Start watching you subjects into REDUX Store HERE!!! */
-store.dispatch((dispatch, getState) => {
-  dispatch({type: "FETCH_WEATHER_PENDING"})
-  axios.get('https://data.buienradar.nl/2.0/feed/json')
-    .then((response) => {
-        dispatch({type: "FETCH_WEATHER_FULFILLED", payload: response.data});
-    })
-    .catch((err) => {
-        dispatch({type: "FETCH_WEATHER_REJECTED", payload: err});
-    })
+store.dispatch({
+  type: "FETCH_WEATHER",
+  payload: axios.get('https://data.buienradar.nl/2.0/feed/json')
 });
