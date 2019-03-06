@@ -3,38 +3,11 @@ import { createLogger } from "redux-logger";
 import reduxThunk from "redux-thunk"
 import promise from "redux-promise-middleware"
 import axios from "axios";
+import rootReducer from './reducers';
 
 /* ======================================= */
 /* Redux Watcher - Polling APIs with Redux */
 /* ======================================= */
-
-/* Subject initial state */
-const initialState = {
-	fetching: false,
-	fetched: false,
-
-  error: null
-};
-
-/* Reducer must handle action types - Weather example */
-const reducer = (state=initialState, action) => {
-
-  switch (action.type) {
-    case "FETCH_WEATHER_PENDING": {
-      return {...state, fetching: true}
-      break;
-    }
-    case "FETCH_WEATHER_REJECTED": {
-      return {...state, fetching: false, error: action.payload}
-      break;
-    }
-    case "FETCH_WEATHER_FULFILLED": {
-      return {...state, fetching: false, fetched: true, data: action.payload}
-      break;
-    }
-  }
-  return state
-}
 
 const middleware = applyMiddleware(
 	promise,
@@ -42,7 +15,19 @@ const middleware = applyMiddleware(
   createLogger()
 )
 
-const store = createStore(reducer, middleware);
+// const rootReducer = require('./reducers');
+
+const store = createStore(rootReducer, middleware);
+
+console.log('Welcome to Redux Watcher app');
+
+if (process.env.NODE_ENV !== 'production') {
+	console.log("Environment: "+process.env.NODE_ENV);
+}
+
+if (process.env.DEBUG) {
+  console.log('Debugging output');
+}
 
 /* ============================== */
 /* Start watching you subjects into REDUX Store HERE!!! */
