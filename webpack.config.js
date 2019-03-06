@@ -1,4 +1,5 @@
 var path = require('path');
+var webpack = require('webpack');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
@@ -19,7 +20,11 @@ module.exports = {
     ]
   },
   plugins: [
-    new HtmlWebpackPlugin({template:'./src/index.html'})
+    new HtmlWebpackPlugin({template:'./src/index.html'}),
+    new webpack.EnvironmentPlugin({
+      NODE_ENV: 'development',
+      DEBUG: false
+    })
   ],
   devServer: {
     contentBase: path.join(__dirname, "dist"),

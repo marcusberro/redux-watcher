@@ -5,7 +5,7 @@ Polling APIs with Redux
 
 ### To run and test
 ```
-§ npm run dev
+§ npm start
 ```
 
 ### Initial boilerplate
