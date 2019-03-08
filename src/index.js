@@ -4,6 +4,7 @@ import reduxThunk from "redux-thunk"
 import promise from "redux-promise-middleware"
 import axios from "axios";
 import rootReducer from './reducers';
+import config from './config'
 
 /* ======================================= */
 /* Redux Watcher - Polling APIs with Redux */
@@ -22,12 +23,17 @@ const store = createStore(rootReducer, middleware);
 console.log('Welcome to Redux Watcher app');
 
 if (process.env.NODE_ENV !== 'production') {
+	console.log('Looks like we are in development mode!');
 	console.log("Environment: "+process.env.NODE_ENV);
 }
 
 if (process.env.DEBUG) {
   console.log('Debugging output');
 }
+
+console.log(config);
+
+console.log(process.env.CONFIG);
 
 /* ============================== */
 /* Start watching you subjects into REDUX Store HERE!!! */
