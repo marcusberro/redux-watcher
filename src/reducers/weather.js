@@ -31,5 +31,21 @@ export default (state=initialState, action) => {
 }
 
 const widgetDataDecorator = (dataFetched) => {
-  return dataFetched;
+	let city = dataFetched.data.actual.stationmeasurements.find(
+		(stad) => stad.regio.toUpperCase() === "AMSTERDAM");
+
+		// var person = new Object();
+	return {...new Object(),
+		city: city.regio,
+		weatherdescription: city.weatherdescription,
+		sunrise: dataFetched.data.actual.sunrise,
+		sunset: dataFetched.data.actual.sunset,
+		temperature: city.temperature,
+		feelsLike: city.feeltemperature,
+		windSpeed: city.windspeed,
+		windgusts: city.windgusts,
+		precipitation: city.precipitation,
+		humidity: city.humidity,
+		airpressure: city.airpressure
+	};
 }
